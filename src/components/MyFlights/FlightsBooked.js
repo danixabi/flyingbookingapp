@@ -1,7 +1,12 @@
 import React from "react";
+import Navbar from "../Navbar";
 
 const FlightsBooked = () => {
-  return <div>FlightsBooked</div>;
+  return (
+    <div>
+      <Navbar />
+    </div>
+  );
 };
 
 export default FlightsBooked;
