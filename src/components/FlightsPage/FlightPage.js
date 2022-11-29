@@ -7,6 +7,7 @@ const FlightPage = (props) => {
   var month = date.getMonth();
   var year = date.getFullYear() + 2;
 
+
   const [value, onChange] = useState(new Date());
   const getClick = (value, event) => {
     console.log(event.target.value)

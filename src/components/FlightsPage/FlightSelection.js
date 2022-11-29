@@ -6,8 +6,7 @@ const FlightSelection = (props) => {
             Tu fecha de vuelo es {props.flightDate.getDay()}-{props.flightDate.getMonth()}-{props.flightDate.getFullYear()} FlightSelection
 
         </div>
-
-    )
+    );
 }
 
 export default FlightSelection
