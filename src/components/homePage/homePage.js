@@ -4,7 +4,13 @@ import Navbar from "../Navbar";
 const homePage = () => {
   return (
     <div>
-      <Navbar />
+      <select>
+        <option>Paris</option>
+        <option>Madrid</option>
+        <option>Berlin</option>
+        <option>Madrid</option>
+        <option>Roma</option>
+      </select>
     </div>
   );
 };
