@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Calendar } from "react-calendar";
 
-const FlightPage = (props) => {
+const FlightPageCalendar = (props) => {
   const date = new Date();
   var day = date.getDate() + 1;
   var month = date.getMonth();
@@ -17,11 +17,11 @@ const FlightPage = (props) => {
 
 
   return (
-    <div className="w-50 d-flex flex-column justify-items-center align-items-center">
+    <div className="d-flex flex-column align-items-center">
       Has seleccionado {props.flightSelect}
-      <Calendar maxDate={new Date(year, month, day)} minDate={new Date()} onClickDay={getClick} onChange={onChange} value={value} />
+      <Calendar className="w-50" maxDate={new Date(year, month, day)} minDate={new Date()} onClickDay={getClick} onChange={onChange} value={value} />
     </div>
   );
 };
 
-export default FlightPage;
+export default FlightPageCalendar;

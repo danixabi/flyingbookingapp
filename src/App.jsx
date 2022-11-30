@@ -8,8 +8,10 @@ import LoginPage from "./components/LoginPage/LoginPage";
 import { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import HomePage from "./components/HomePage/HomePage";
-import FlightPage from "./components/Flights/FlightCalendar/FlightPageCalendar";
 import FlightSelection from "./components/Flights/FlightsPage/FlightSelection";
+import Navbar from "./components/Navbar";
+import FlightPageCalendar from "./components/Flights/FlightCalendar/FlightPageCalendar";
+import RegisterPage from "./components/RegisterPage/RegisterPage";
 
 const vuelos = [
   {
@@ -21,7 +23,7 @@ const vuelos = [
   },
   {
     precio: "150",
-    fecha: new Date("05-01-2023"),
+    fecha: new Date("05-04-2023"),
     origen: "Sevilla",
     destino: "Madrid",
     id: "54312"
@@ -35,16 +37,16 @@ const vuelos = [
   },
   {
     precio: "120",
-    fecha: new Date("05-12-2023"),
-    origen: "Sevilla",
+    fecha: new Date("11-30-2022"),
+    origen: "Madrid",
     destino: "Roma",
     id: "43543"
   },
   {
     precio: "90",
-    fecha: new Date("03-01-2023"),
-    origen: "Sevilla",
-    destino: "Madrid",
+    fecha: new Date("11-29-2022"),
+    origen: "Madrid",
+    destino: "Roma",
     id: "534534"
 
   },
@@ -83,7 +85,20 @@ const App = () => {
   const [login, setLogin] = useState(false)
   const [flightSelect, setflightSelect] = useState(false)
   const [citySelected, setCitySelected] = useState("")
+  const [bookingInfo, setBookingInfo] = useState(null)
   const [flightDate, setFlightDate] = useState(null)
+
+  const goHome = () => {
+    setflightSelect(false)
+    setBookingInfo(false)
+    setFlightDate(null)
+  }
+
+  const bookingInfoHandler = (state) => {
+
+    setFlightDate(null)
+    setBookingInfo(state)
+  }
 
   const flightHandler = (city) => {
     setflightSelect(true)
@@ -92,44 +107,61 @@ const App = () => {
   }
 
   const flightDateHandler = (date) => {
-    console.log(date)
     setFlightDate(date)
     setflightSelect(false)
+  }
+
+  const logOut = () => {
+    setLogin(false);
+    setflightSelect(false)
+    setFlightDate(null)
+    setBookingInfo(false)
   }
 
   if (!login) {
     show = (
 
-
       <LoginPage setLogin={setLogin} />
+
 
     );
   } else if (flightSelect) {
     show = (
-      <div className="d-flex justify-content-center">
-        <FlightPage flightSelect={flightSelect} flightDateHandler={flightDateHandler} />
+      <div className="">
+        <Navbar logOut={logOut} goHome={goHome} />
+        <FlightPageCalendar flightSelect={flightSelect} flightDateHandler={flightDateHandler} />
       </div>
     );
 
   } else if (flightDate != null) {
-
     show = (
-      <FlightSelection
-
-        flightDate={flightDate}
-        citySelected={citySelected}
-        vuelos={vuelos}
-      />
-
+      <div>
+        <Navbar logOut={logOut} goHome={goHome} />
+        <FlightSelection
+          bookingInfoHandler={bookingInfoHandler}
+          flightDate={flightDate}
+          citySelected={citySelected}
+          vuelos={vuelos}
+        />
+      </div>
 
 
     );
 
 
+  } else if (bookingInfo) {
+    show = (
+      <div>
+        <Navbar logOut={logOut} goHome={goHome} />
+        <RegisterPage bookingInfo={bookingInfo} />
+      </div>
+    )
   } else {
     show = (
-
-      <HomePage setLogin={setflightSelect} flightHandler={flightHandler} />
+      <div>
+        <Navbar logOut={logOut} goHome={goHome} />
+        <HomePage onLoad setLogin={setflightSelect} flightHandler={flightHandler} />
+      </div>
 
     );
   }

@@ -10,12 +10,14 @@ const FlightSelection = (props) => {
 
             <FlightSelectionFlys
                 key={vuelo.id}
+                id={vuelo.id}
                 flightDate={props.flightDate}
                 citySelected={props.citySelected}
                 prize={vuelo.precio}
                 destiny={vuelo.destino}
                 origin={vuelo.origen}
                 date={vuelo.fecha}
+                bookingInfoHandler={props.bookingInfoHandler}
             />
 
         ))
