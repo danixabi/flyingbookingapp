@@ -65,9 +65,9 @@ const vuelos = [
 ]
 
 
-function App() {
+const App = () => {
 
-  var show = "";
+  var show;
   const [login, setLogin] = useState(false)
   const [flightSelect, setflightSelect] = useState(false)
   const [citySelected, setCitySelected] = useState("")
