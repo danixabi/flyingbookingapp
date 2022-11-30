@@ -67,6 +67,18 @@ const vuelos = [
 
 const App = () => {
 
+  /*   <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/Register" element={<RegisterPage />} />
+        <Route path="/Home" element={<HomePage />} />
+        <Route path="/Flight" element={<FlightPage />} />
+        <Route path="/Flight/Form" element={<FlightForm />} />
+        <Route path="/FlightSelector" element={<FlightSelection />} />
+      </Routes>
+    </BrowserRouter>;
+   */
+
   var show;
   const [login, setLogin] = useState(false)
   const [flightSelect, setflightSelect] = useState(false)
