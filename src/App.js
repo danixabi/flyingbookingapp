@@ -1,23 +1,25 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import HomePage from "./components/homePage/HomePage";
-import LoginPage from "./components/loginPage/LoginPage";
-import FlightPage from "./components/FlightsPage/FlightPage";
-import FlightForm from "./components/FlightsPage/FlightForm/FlightForm";
-import MyFlights from "./components/MyFlights/FlightsBooked";
-import RegisterPage from "./components/RegisterPage/RegisterPage";
+import "./components/homePage/homePage";
+import "./components/loginPage/loginPage";
+import "./components/FlightsPage/FlightPage";
+import "./components/FlightsPage/FlightForm/FlightForm";
+import "./components/MyFlights/FlightsBooked";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/Login" element={<LoginPage />} />
-        <Route path="/" element={<HomePage />} />
-        <Route path="/Flights" element={<FlightPage />} />
-        <Route path="/Flights/Form" elemnt={<FlightForm />} />
-        <Route path="/MyFlights" element={<MyFlights />} />
-        <Route path="/Register" element={<RegisterPage />}></Route>
+        <Route path="/login" element={<loginPage />} />
+        <Route
+          path="/"
+          element={
+            <homePage>
+              <Navbar />{" "}
+            </homePage>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
