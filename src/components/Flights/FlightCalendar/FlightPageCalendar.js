@@ -13,7 +13,6 @@ const FlightPage = (props) => {
     console.log(event.target.value)
     console.log(value)
     props.flightDateHandler(value);
-
   }
 
 

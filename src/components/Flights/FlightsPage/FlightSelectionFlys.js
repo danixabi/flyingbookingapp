@@ -3,7 +3,8 @@ import React from 'react'
 const FlightSelectionFlys = (props) => {
 
     var show = "";
-
+    console.log(props.destiny)
+    console.log(props.citySelected)
 
     if (props.destiny == props.citySelected) {
         if (props.flightDate.getFullYear() == props.date.getFullYear()) {
