@@ -12,32 +12,81 @@ import HomePage from "./components/homePage/HomePage";
 import FlightPage from "./components/FlightsPage/FlightPage";
 import FlightSelection from "./components/FlightsPage/FlightSelection";
 
+const vuelos = [
+  {
+    precio: "150",
+    fecha: new Date("05-01-2023"),
+    origen: "Sevilla",
+    destino: "Madrid",
+    id: "423423"
+  },
+  {
+    precio: "100",
+    fecha: new Date("05-05-2023"),
+    origen: "Sevilla",
+    destino: "Barcelona",
+    id: "6542"
+  },
+  {
+    precio: "120",
+    fecha: new Date("05-12-2023"),
+    origen: "Sevilla",
+    destino: "Roma",
+    id: "43543"
+  },
+  {
+    precio: "90",
+    fecha: new Date("03-01-2023"),
+    origen: "Sevilla",
+    destino: "Madrid",
+    id: "534534"
+
+  },
+  {
+    precio: "100",
+    fecha: new Date("05-05-2023"),
+    origen: "Sevilla",
+    destino: "Madrid",
+    id: "213421"
+  },
+  {
+    precio: "120",
+    fecha: new Date("05-12-2023"),
+    origen: "Roma",
+    destino: "Paris",
+    id: "32"
+  }
+]
+
+
 function App() {
 
   var show = "";
   const [login, setLogin] = useState(false)
-  const [flightSelect, setflightSelect] = useState("")
+  const [flightSelect, setflightSelect] = useState(false)
+  const [citySelected, setCitySelected] = useState("")
   const [flightDate, setFlightDate] = useState(null)
 
   const flightHandler = (city) => {
-    setflightSelect(city)
+    setflightSelect(true)
+    setCitySelected(city)
     console.log(city)
   }
 
   const flightDateHandler = (date) => {
     console.log(date)
     setFlightDate(date)
-    setflightSelect("")
+    setflightSelect(false)
   }
 
   if (!login) {
     show = (
-      <div>
 
-        <LoginPage setLogin={setLogin} />
-      </div>
+
+      <LoginPage setLogin={setLogin} />
+
     );
-  } else if (flightSelect != "") {
+  } else if (flightSelect) {
     show = (
       <div className="d-flex justify-content-center">
         <FlightPage flightSelect={flightSelect} flightDateHandler={flightDateHandler} />
@@ -45,16 +94,28 @@ function App() {
     );
 
   } else if (flightDate != null) {
-    show = (
-      <div className="d-flex justify-content-center">
-        <FlightSelection flightDate={flightDate} />
-      </div>
+
+    show = vuelos.map((vuelo) => (
+      <FlightSelection
+        key={vuelo.id}
+        flightDate={flightDate}
+        citySelected={citySelected}
+        prize={vuelo.precio}
+        destiny={vuelo.destino}
+        origin={vuelo.origen}
+        date={vuelo.fecha}
+      />
+    )
+
+
     );
+
+
   } else {
     show = (
-      <div>
-        <HomePage setLogin={setflightSelect} flightHandler={flightHandler} />
-      </div>
+
+      <HomePage setLogin={setflightSelect} flightHandler={flightHandler} />
+
     );
   }
   /*  <BrowserRouter>

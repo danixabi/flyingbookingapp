@@ -1,9 +1,21 @@
 import React from 'react'
 
 const FlightSelection = (props) => {
+    var show;
+
+    if (props.origin == props.citySelected) {
+
+    }
+    if (props.flightDate.getMonth() != props.date.getMonth()) {
+
+    }
+
     return (
         <div>
-            Tu fecha de vuelo es {props.flightDate.getDay()}-{props.flightDate.getMonth()}-{props.flightDate.getFullYear()} FlightSelection
+            dia {props.flightDate.getDay()}
+            cit{props.citySelected}
+            origin{props.origin}
+
 
         </div>
     );
