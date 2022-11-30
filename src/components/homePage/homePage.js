@@ -5,15 +5,15 @@ const HomePage = (props) => {
 
   const manageElection = (city) => {
     if (city == "roma") {
-      props.flightHandler("roma")
+      props.flightHandler("Roma")
     } else if (city == "paris") {
-      props.flightHandler("paris")
+      props.flightHandler("Paris")
     } else if (city == "barcelona") {
-      props.flightHandler("barcelona")
+      props.flightHandler("Barcelona")
     } else if (city == "madrid") {
-      props.flightHandler("madrid")
+      props.flightHandler("Madrid")
     } else if (city == "berlin") {
-      props.flightHandler("berlin")
+      props.flightHandler("Berlin")
     }
 
 

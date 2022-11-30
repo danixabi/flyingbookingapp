@@ -1,16 +1,15 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-import "./components/homePage/HomePage";
-import "./components/loginPage/LoginPage";
-import "./components/FlightsPage/FlightPage";
-import "./components/FlightsPage/FlightForm/FlightForm";
+import "./components/HomePage/HomePage";
+import "./components/LoginPage/LoginPage";
+import "./components/Flights/FlightCalendar/FlightPageCalendar";
 import "./components/MyFlights/FlightsBooked";
-import LoginPage from "./components/loginPage/LoginPage";
+import LoginPage from "./components/LoginPage/LoginPage";
 import { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import HomePage from "./components/homePage/HomePage";
-import FlightPage from "./components/FlightsPage/FlightPage";
-import FlightSelection from "./components/FlightsPage/FlightSelection";
+import HomePage from "./components/HomePage/HomePage";
+import FlightPage from "./components/Flights/FlightCalendar/FlightPageCalendar";
+import FlightSelection from "./components/Flights/FlightsPage/FlightSelection";
 
 const vuelos = [
   {
@@ -19,6 +18,13 @@ const vuelos = [
     origen: "Sevilla",
     destino: "Madrid",
     id: "423423"
+  },
+  {
+    precio: "150",
+    fecha: new Date("05-01-2023"),
+    origen: "Sevilla",
+    destino: "Madrid",
+    id: "54312"
   },
   {
     precio: "100",
@@ -95,17 +101,14 @@ function App() {
 
   } else if (flightDate != null) {
 
-    show = vuelos.map((vuelo) => (
+    show = (
       <FlightSelection
-        key={vuelo.id}
+
         flightDate={flightDate}
         citySelected={citySelected}
-        prize={vuelo.precio}
-        destiny={vuelo.destino}
-        origin={vuelo.origen}
-        date={vuelo.fecha}
+        vuelos={vuelos}
       />
-    )
+
 
 
     );
