@@ -21,10 +21,3 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-src/components/Carrousel.js
-src/components/FlightsPage/FlightPagecss.css
-src/components/FlightsPage/FlightSelection.js
-src/components/RegisterPage/RegisterPage.js
-src/Images/avion1.jpg
-src/Images/avion2.jpg
-src/Images/avion3.jpg
