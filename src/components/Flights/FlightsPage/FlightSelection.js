@@ -36,7 +36,7 @@ const FlightSelection = (props) => {
     return (
 
         <div className='d-flex flex-column align-items-center'>
-            <h2>A continuación aparecen los vuelos encontrados</h2>
+            <h2 className='w-75'>Here you have a list of flights near your chosen date. If there's nothing, we haven't found flights near this date</h2>
             {show}
         </div>
 

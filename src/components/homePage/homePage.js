@@ -21,7 +21,7 @@ const HomePage = (props) => {
 
   return (
     <div className="">
-      <h1 className="text-center p-5">Bienvenido {props.user.name}, elige destino de tu vuelo</h1>
+      <h1 className="text-center p-5">Welcome {props.user.name}, choose your fly destiny</h1>
       <div className=" d-flex justify-content-center align-content-center align-items-center flex-row h-100">
 
         <div className="w-25 ">

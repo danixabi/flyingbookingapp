@@ -13,62 +13,7 @@ import Navbar from "./components/Navbar";
 import FlightPageCalendar from "./components/Flights/FlightCalendar/FlightPageCalendar";
 import RegisterPage from "./components/RegisterPage/RegisterPage";
 import axios from 'axios';
-
-
-const vuelos = [
-  {
-    precio: "150",
-    fecha: new Date("05-01-2023"),
-    origen: "Sevilla",
-    destino: "Madrid",
-    id: "423423"
-  },
-  {
-    precio: "150",
-    fecha: new Date("05-04-2023"),
-    origen: "Sevilla",
-    destino: "Madrid",
-    id: "54312"
-  },
-  {
-    precio: "100",
-    fecha: new Date("05-05-2023"),
-    origen: "Sevilla",
-    destino: "Barcelona",
-    id: "6542"
-  },
-  {
-    precio: "120",
-    fecha: new Date("12-01-2022"),
-    origen: "Madrid",
-    destino: "Roma",
-    id: "43543"
-  },
-  {
-    precio: "90",
-    fecha: new Date("11-29-2022"),
-    origen: "Madrid",
-    destino: "Roma",
-    id: "534534"
-
-  },
-  {
-    precio: "100",
-    fecha: new Date("05-05-2023"),
-    origen: "Sevilla",
-    destino: "Madrid",
-    id: "213421"
-  },
-  {
-    precio: "120",
-    fecha: new Date("05-12-2023"),
-    origen: "Roma",
-    destino: "Paris",
-    id: "32"
-  }
-]
-
-
+import Bookings from "./components/Bookings/Bookings";
 
 
 
@@ -93,18 +38,24 @@ const App = () => {
   const [flightSelect, setflightSelect] = useState(false)
   const [citySelected, setCitySelected] = useState("")
   const [bookingInfo, setBookingInfo] = useState(null)
+  const [bookingCheck, setBookingCheck] = useState(false)
   const [flightDate, setFlightDate] = useState(null)
 
   const goHome = () => {
     setflightSelect(false)
     setBookingInfo(false)
     setFlightDate(null)
+    setBookingCheck(false)
   }
 
   const bookingInfoHandler = (state) => {
 
     setFlightDate(null)
     setBookingInfo(state)
+  }
+
+  const bookingCheckHandler = () => {
+    setBookingCheck(true)
   }
 
   const flightHandler = (city) => {
@@ -124,6 +75,7 @@ const App = () => {
     setFlightDate(null)
     setBookingInfo(false)
     setUser([])
+    setBookingCheck(false)
   }
 
   if (!login) {
@@ -136,7 +88,7 @@ const App = () => {
   } else if (flightSelect) {
     show = (
       <div className="">
-        <Navbar logOut={logOut} goHome={goHome} />
+        <Navbar bookingCheckHandler={bookingCheckHandler} logOut={logOut} goHome={goHome} />
         <FlightPageCalendar citySelected={citySelected} flightSelect={flightSelect} flightDateHandler={flightDateHandler} />
       </div>
     );
@@ -144,12 +96,11 @@ const App = () => {
   } else if (flightDate != null) {
     show = (
       <div>
-        <Navbar logOut={logOut} goHome={goHome} />
+        <Navbar bookingCheckHandler={bookingCheckHandler} logOut={logOut} goHome={goHome} />
         <FlightSelection
           bookingInfoHandler={bookingInfoHandler}
           flightDate={flightDate}
           citySelected={citySelected}
-          vuelos={vuelos}
           user={user}
         />
       </div>
@@ -161,15 +112,22 @@ const App = () => {
   } else if (bookingInfo) {
     show = (
       <div>
-        <Navbar logOut={logOut} goHome={goHome} />
+        <Navbar bookingCheckHandler={bookingCheckHandler} logOut={logOut} goHome={goHome} />
         <RegisterPage goHome={goHome} bookingInfo={bookingInfo} />
+      </div>
+    )
+  } else if (bookingCheck) {
+    show = (
+      <div>
+        <Navbar bookingCheckHandler={bookingCheckHandler} logOut={logOut} goHome={goHome} />
+        <Bookings user={user} />
       </div>
     )
   } else {
     console.log(user)
     show = (
       <div>
-        <Navbar logOut={logOut} goHome={goHome} />
+        <Navbar bookingCheckHandler={bookingCheckHandler} logOut={logOut} goHome={goHome} />
         <HomePage user={user} onLoad setLogin={setflightSelect} flightHandler={flightHandler} />
       </div>
 

@@ -32,7 +32,7 @@ const FlightSelectionFlys = (props) => {
                         <button
                             onClick={setFly}
                             className='btn btn-primary m-2'>
-                            {props.flight.flightId} Flight from {props.flight.origin} to {props.flight.destiny} at {dateFlight.getMonth() + 1}-{dateFlight.getDate()}-{dateFlight.getFullYear()}
+                            {props.flight.flightId} Flight from {props.flight.origin} to {props.flight.destiny} at {dateFlight.getMonth() + 1}-{dateFlight.getDate()}-{dateFlight.getFullYear()} for {props.flight.price}€
                         </button>);
                 }
             }
