@@ -1,11 +1,21 @@
 import React from "react";
 import { Form, Button } from "react-bootstrap";
+import axios from "axios"
 
 const RegisterPage = (props) => {
 
-  console.log(props.bookingInfo.id)
-  console.log(props.bookingInfo.date)
+  console.log(props.bookingInfo)
 
+  const insertReservation = () => {
+
+    axios
+      .post("http://localhost:8080/reservations/create", props.bookingInfo)
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+
+
+
+  }
 
   return (
     <div className="d-flex flex-column align-items-center">
@@ -60,7 +70,7 @@ const RegisterPage = (props) => {
 
         </Form.Select>
 
-        <Button className="mt-2" variant="primary" type="submit">
+        <Button onClick={insertReservation} className="mt-2" variant="primary" type="submit">
 
           Submit
 

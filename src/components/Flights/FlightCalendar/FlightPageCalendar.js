@@ -10,15 +10,13 @@ const FlightPageCalendar = (props) => {
 
   const [value, onChange] = useState(new Date());
   const getClick = (value, event) => {
-    console.log(event.target.value)
-    console.log(value)
     props.flightDateHandler(value);
   }
 
 
   return (
     <div className="d-flex flex-column align-items-center">
-      Has seleccionado {props.flightSelect}
+      Has seleccionado {props.citySelected}
       <Calendar className="w-50" maxDate={new Date(year, month, day)} minDate={new Date()} onClickDay={getClick} onChange={onChange} value={value} />
     </div>
   );

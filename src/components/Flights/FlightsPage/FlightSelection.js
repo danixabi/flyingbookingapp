@@ -1,22 +1,32 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import FlightSelectionFlys from './FlightSelectionFlys'
+import axios from "axios"
 
 const FlightSelection = (props) => {
     var show;
 
+    const [flights, setFlights] = useState([])
+    const getFlights = async () => {
+        const res = await axios.get('http://localhost:8080/flights/all')
+        console.log(res.data)
+        setFlights(res.data)
+    }
+
+    useEffect(() => {
+
+        getFlights()
+    }, [])
+    console.log(flights)
 
     show =
-        props.vuelos.map((vuelo) => (
+        flights.map((flight) => (
 
             <FlightSelectionFlys
-                key={vuelo.id}
-                id={vuelo.id}
+                user={props.user}
+                flight={flight}
+                key={flight.id}
                 flightDate={props.flightDate}
                 citySelected={props.citySelected}
-                prize={vuelo.precio}
-                destiny={vuelo.destino}
-                origin={vuelo.origen}
-                date={vuelo.fecha}
                 bookingInfoHandler={props.bookingInfoHandler}
             />
 

@@ -5,13 +5,15 @@ import "./components/LoginPage/LoginPage";
 import "./components/Flights/FlightCalendar/FlightPageCalendar";
 import "./components/MyFlights/FlightsBooked";
 import LoginPage from "./components/LoginPage/LoginPage";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import HomePage from "./components/HomePage/HomePage";
 import FlightSelection from "./components/Flights/FlightsPage/FlightSelection";
 import Navbar from "./components/Navbar";
 import FlightPageCalendar from "./components/Flights/FlightCalendar/FlightPageCalendar";
 import RegisterPage from "./components/RegisterPage/RegisterPage";
+import axios from 'axios';
+
 
 const vuelos = [
   {
@@ -37,7 +39,7 @@ const vuelos = [
   },
   {
     precio: "120",
-    fecha: new Date("11-30-2022"),
+    fecha: new Date("12-01-2022"),
     origen: "Madrid",
     destino: "Roma",
     id: "43543"
@@ -67,6 +69,10 @@ const vuelos = [
 ]
 
 
+
+
+
+
 const App = () => {
 
   /*   <BrowserRouter>
@@ -83,6 +89,7 @@ const App = () => {
 
   var show;
   const [login, setLogin] = useState(false)
+  const [user, setUser] = useState([])
   const [flightSelect, setflightSelect] = useState(false)
   const [citySelected, setCitySelected] = useState("")
   const [bookingInfo, setBookingInfo] = useState(null)
@@ -116,12 +123,13 @@ const App = () => {
     setflightSelect(false)
     setFlightDate(null)
     setBookingInfo(false)
+    setUser([])
   }
 
   if (!login) {
     show = (
 
-      <LoginPage setLogin={setLogin} />
+      <LoginPage setLogin={setLogin} setUser={setUser} />
 
 
     );
@@ -129,7 +137,7 @@ const App = () => {
     show = (
       <div className="">
         <Navbar logOut={logOut} goHome={goHome} />
-        <FlightPageCalendar flightSelect={flightSelect} flightDateHandler={flightDateHandler} />
+        <FlightPageCalendar citySelected={citySelected} flightSelect={flightSelect} flightDateHandler={flightDateHandler} />
       </div>
     );
 
@@ -142,6 +150,7 @@ const App = () => {
           flightDate={flightDate}
           citySelected={citySelected}
           vuelos={vuelos}
+          user={user}
         />
       </div>
 
@@ -153,14 +162,15 @@ const App = () => {
     show = (
       <div>
         <Navbar logOut={logOut} goHome={goHome} />
-        <RegisterPage bookingInfo={bookingInfo} />
+        <RegisterPage goHome={goHome} bookingInfo={bookingInfo} />
       </div>
     )
   } else {
+    console.log(user)
     show = (
       <div>
         <Navbar logOut={logOut} goHome={goHome} />
-        <HomePage onLoad setLogin={setflightSelect} flightHandler={flightHandler} />
+        <HomePage user={user} onLoad setLogin={setflightSelect} flightHandler={flightHandler} />
       </div>
 
     );
